@@ -25134,7 +25134,7 @@ SwaggerUi.Views.HeaderView = Backbone.View.extend({
 
   showPetStore: function(){
     this.trigger('update-swagger-ui', {
-      url:'http://localhost:8080/rest/api-docs'
+      url:'http://localhost:8080/jsf-shiro-jee/rest/api-docs'
     });
   },
 
