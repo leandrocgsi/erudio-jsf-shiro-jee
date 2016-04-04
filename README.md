@@ -13,7 +13,7 @@ São dois documentos ambos duplicados em formato PDF e docx:
 O rascunho inicial da base de dados
 -----------------------------------
 
-![Base de Dados](https://bytebucket.org/tecsinapse/lipjava-leandrocgsi/raw/cdd224bbc46d723eebe2d6dd68745411c6d78d53/docs/PlayTennisModel.jpg?token=bff4b97e914b5b6f33023322a1d9219e979c0f5b)
+![Base de Dados](https://bytebucket.org/erudio/lipjava-leandrocgsi/raw/cdd224bbc46d723eebe2d6dd68745411c6d78d53/docs/PlayTennisModel.jpg?token=bff4b97e914b5b6f33023322a1d9219e979c0f5b)
 
 Acessando a documentação dos enpoints com Swagger
 -------------------------------------------------
@@ -22,4 +22,4 @@ Acessando a documentação dos enpoints com Swagger
 http://localhost:8080/index.html
 ```
 
-![Swagger](https://bytebucket.org/tecsinapse/lipjava-leandrocgsi/raw/cdd224bbc46d723eebe2d6dd68745411c6d78d53/docs/swagger_documentation.png?token=f568a0d1794ad846360b0f0acf39519dc00004d8)
+![Swagger](https://bytebucket.org/erudio/lipjava-leandrocgsi/raw/cdd224bbc46d723eebe2d6dd68745411c6d78d53/docs/swagger_documentation.png?token=f568a0d1794ad846360b0f0acf39519dc00004d8)

@@ -1,9 +1,11 @@
-package br.com.tecsinapse.util;
+package br.com.erudio.util;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import br.com.erudio.util.DateUtil;
 
 public class DateUtilTest {
 	

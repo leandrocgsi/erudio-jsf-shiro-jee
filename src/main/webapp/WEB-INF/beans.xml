@@ -5,6 +5,6 @@
        bean-discovery-mode="all">
 
     <interceptors>
-        <class>br.com.tecsinapse.interceptor.LoggingInterceptor</class>
+        <class>br.com.erudio.interceptor.LoggingInterceptor</class>
     </interceptors>
 </beans>

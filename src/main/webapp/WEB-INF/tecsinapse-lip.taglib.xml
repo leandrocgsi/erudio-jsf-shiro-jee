@@ -2,12 +2,12 @@
 <facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibary_2_2.xsd"
                 version="2.2">
-    <namespace>http://tecsinapse.com.br/lip</namespace>
+    <namespace>http://erudio.com.br/lip</namespace>
 
     <tag>
         <tag-name>collapsePanel</tag-name>
         <component>
-            <component-type>br.com.tecsinapse.component.CollapsePanel</component-type>
+            <component-type>br.com.erudio.component.CollapsePanel</component-type>
         </component>
         <attribute>
             <name>idContent</name>

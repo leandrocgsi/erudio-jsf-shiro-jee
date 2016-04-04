@@ -12,17 +12,17 @@
                   overflowToDisk="false" timeToIdleSeconds="120" timeToLiveSeconds="300"
                   diskPersistent="false" diskExpiryThreadIntervalSeconds="300"/>
 
-    <cache name="lipjava.war#lipjavaPu.br.com.tecsinapse.model.AnexoEmail"
+    <cache name="lipjava.war#lipjavaPu.br.com.erudio.model.AnexoEmail"
            maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="86400"
            timeToLiveSeconds="86400" overflowToDisk="false" statistics="true"/>
     <cache name="lipjava.war#lipjavaPu.AnexoEmail.findAll"
            maxElementsInMemory="1" eternal="false" timeToIdleSeconds="86400"
            timeToLiveSeconds="86400" overflowToDisk="false" statistics="true"/>
 
-    <cache name="lipjava.war#lipjavaPu.br.com.tecsinapse.model.Email"
+    <cache name="lipjava.war#lipjavaPu.br.com.erudio.model.Email"
            maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="86400"
            timeToLiveSeconds="86400" overflowToDisk="false" statistics="true"/>
-    <cache name="lipjava.war#lipjavaPu.br.com.tecsinapse.model.Email.anexos"
+    <cache name="lipjava.war#lipjavaPu.br.com.erudio.model.Email.anexos"
            maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="86400"
            timeToLiveSeconds="86400" overflowToDisk="false" statistics="true"/>
     <cache name="lipjava.war#lipjavaPu.Email.findAll"
@@ -32,7 +32,7 @@
            maxElementsInMemory="1" eternal="false" timeToIdleSeconds="86400"
            timeToLiveSeconds="86400" overflowToDisk="false" statistics="true"/>
 
-    <cache name="lipjava.war#lipjavaPu.br.com.tecsinapse.model.Usuario"
+    <cache name="lipjava.war#lipjavaPu.br.com.erudio.model.Usuario"
            maxElementsInMemory="100" eternal="false" timeToIdleSeconds="86400"
            timeToLiveSeconds="86400" overflowToDisk="false" statistics="true"/>
     <cache name="lipjava.war#lipjavaPu.Usuario.findAll"
