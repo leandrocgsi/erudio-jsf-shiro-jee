@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components" xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<ui:composition template="/resources/templates/template-core.xhtml">
+    <ui:define name="cabecalho">
+        Usuários
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form id="form">
+            <lj:messages/>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <pretty:link mappingId="usuario-novo" styleClass="btn btn-default">
+                        <i class="glyphicon glyphicon-plus"></i> novo
+                    </pretty:link>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p:dataTable value="#{usuarioController.usuarios}" var="usuario"
+                                 paginator="true" rows="20" paginatorPosition="bottom">
+                        <p:column headerText="Nome" filterMatchMode="contains" filterBy="#{usuario.nome}">
+                            #{usuario.nome}
+                        </p:column>
+                        <p:column headerText="Email" filterMatchMode="contains" filterBy="#{usuario.email}">
+                            #{usuario.email}
+                        </p:column>
+                        <p:column headerText="Ativo" filterMatchMode="contains" filterBy="#{usuario.ativoString}">
+                            #{usuario.ativoString}
+                        </p:column>
+                        <p:column headerText="Ações">
+                            <pretty:link mappingId="usuario" styleClass="btn btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i> editar
+                                <f:param value="#{usuario.id}"/>
+                            </pretty:link>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

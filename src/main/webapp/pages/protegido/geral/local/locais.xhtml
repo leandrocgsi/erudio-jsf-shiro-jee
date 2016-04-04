@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components" xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<ui:composition template="/resources/templates/template-core.xhtml">
+    <ui:define name="cabecalho">
+        Locais
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form id="form">
+            <lj:messages/>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <p:dataTable value="#{localController.locais}" var="local" paginator="true" rows="20" paginatorPosition="bottom">
+                        <p:column headerText="Descricao" filterMatchMode="contains" filterBy="#{local.descricao}">
+                            #{local.descricao}
+                        </p:column>
+                        <p:column headerText="Cidade" filterMatchMode="contains" filterBy="#{local.cidade}">
+                            #{local.cidade}
+                        </p:column>
+                        <p:column headerText="Bairro" filterMatchMode="contains" filterBy="#{local.bairro}">
+                            #{local.bairro}
+                        </p:column>
+                        <p:column headerText="CEP" filterMatchMode="contains" filterBy="#{local.cep}">
+                            #{local.cep}
+                        </p:column>
+                        <p:column headerText="Ativo" filterMatchMode="contains" filterBy="#{local.ativoString}">
+                            #{local.ativoString}
+                        </p:column>
+                        <p:column headerText="Ações">
+                            <ui:remove>
+                            <pretty:link mappingId="local" styleClass="btn btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i> Editar
+                                <f:param value="#{local.id}"/>
+                            </pretty:link>
+                            </ui:remove>
+                            <pretty:link mappingId="local-ativar" styleClass="btn btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i> Ativar
+                                <f:param value="#{local.id}"/>
+                            </pretty:link>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:lj="http://java.sun.com/jsf/composite/components">
+
+<ui:composition template="/resources/templates/template-clean.xhtml">
+
+    <ui:define name="alerta">
+        <h:form id="formNovaSenha">
+            <div class="page-header">
+                <h1>Esqueci minha senha</h1>
+            </div>
+            <lj:messages/>
+            <ui:fragment rendered="#{!novaSenhaController.enviado}">
+                <div class="well">
+                    <fieldset>
+                        <label>Email Cadastrado</label>
+                        <h:inputText value="#{novaSenhaController.emailCadastrado}"
+                                     styleClass="input-xlarge" required="true"
+                                     requiredMessage="Informe o email cadastrado"/>
+						<span class="help-inline">Informa o email que está
+							cadastrado</span>
+                    </fieldset>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <h:commandLink action="#{novaSenhaController.esqueciSenha}"
+                                       update="msgs" process="@form" styleClass="btn btn-inverse btn-large btn-primary">
+                            <i class="icon-refresh icon-white"></i> Lembrar senha
+                        </h:commandLink>
+                    </div>
+                </div>
+            </ui:fragment>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

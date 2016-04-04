@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components" xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<ui:composition template="/resources/templates/template-core.xhtml">
+    <ui:define name="cabecalho">
+        Jogador #{jogadorController.jogador.nome}
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form id="form" enctype="multipart/form-data">
+            <lj:messages/>
+
+            <div class="form-group">
+                <label>Nome</label>
+                <h:inputText value="#{jogadorController.jogador.nome}" styleClass="form-control"/>
+            </div>
+            
+            <div class="form-group">
+                <label>Tipo de Jogador</label>
+               	<h:selectOneMenu value="#{jogadorController.jogador.tipoJogador}" styleClass="form-control" converter="omnifaces.GenericEnumConverter">
+                    <f:selectItem itemLabel="Selecione" itemValue="#{null}"/>
+                    <f:selectItems value="#{jogadorController.tipoJogadors}" var="tipoJogador"
+                                   itemValue="#{tipoJogador}" itemLabel="#{tipoJogador.descricao}" />
+                    <f:ajax event="change" execute="@this" />
+                </h:selectOneMenu>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <h:inputText value="#{jogadorController.jogador.email}" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Observação</label>
+                <h:inputText value="#{jogadorController.jogador.observacao}" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Nova Senha</label>
+                <h:inputSecret value="#{jogadorController.jogador.senha}" required="true" requiredMessage="Informe sua senha" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Confirme sua Senha</label>
+                <h:inputSecret value="#{jogadorController.jogador.senhaConfirmacao}" required="true" requiredMessage="Informe novamente sua senha" styleClass="form-control"/>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h:commandLink action="#{jogadorController.gravar}" styleClass="btn btn-default">
+                        <i class="glyphicon glyphicon-floppy-disk"></i> Salvar
+                    </h:commandLink>
+                    <pretty:link mappingId="jogadores" styleClass="btn btn-default">
+                        <i class="glyphicon glyphicon-arrow-left"></i> Voltar
+                    </pretty:link>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

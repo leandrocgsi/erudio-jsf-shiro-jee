@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:lj="http://java.sun.com/jsf/composite/components"
+        >
+<ui:composition template="/resources/templates/template.xhtml">
+
+    <ui:define name="css">
+        <h:outputStylesheet name="assets/css/signin.css" rel="stylesheet"/>
+    </ui:define>
+    <ui:define name="corpo">
+
+        <div class="container">
+
+            <h:form id="loginForm" prependId="false" styleClass="form-signin" pt:role="form">
+                <h2 class="form-signin-heading">LIP Java</h2>
+                <h:inputText id="username" required="true"
+                             requiredMessage="preencha o login" styleClass="form-control" pt:placeholder="login / email"
+                             pt:autofocus="true"/>
+                <h:inputSecret id="password" required="true"
+                               requiredMessage="preencha a senha" styleClass="form-control" pt:placeholder="senha"/>
+
+                <div style="padding: 10px 0;">
+                    <ui:fragment rendered="#{shiroLoginFailure != null}">
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <ui:fragment
+                                    rendered="#{shiroLoginFailure eq 'org.apache.shiro.authc.UnknownAccountException'}">
+                                Usuário não encontrado! Tente novamente.
+                            </ui:fragment>
+                            <ui:fragment
+                                    rendered="#{shiroLoginFailure eq 'org.apache.shiro.authc.IncorrectCredentialsException'}">
+                                Senha incorreta! Tente novamente. Se esqueceu sua senha clique
+                                <pretty:link mappingId="esqueci-senha">aqui</pretty:link>
+                            </ui:fragment>
+                            <ui:fragment
+                                    rendered="#{shiroLoginFailure eq 'org.apache.shiro.authc.AuthenticationException'}">
+                                Usuario ou Senha incorreta! Tente novamente. Se esqueceu sua senha clique
+                                <pretty:link mappingId="esqueci-senha">aqui</pretty:link>
+                            </ui:fragment>
+                        </div>
+                    </ui:fragment>
+
+                    <lj:messages/>
+                </div>
+
+                <button id="submitButton" type="submit"
+                        class="btn btn-lg btn-primary btn-block">ACESSAR O SISTEMA
+                </button>
+
+                <pretty:link mappingId="jogador-novo" styleClass="btn btn-link btn-block">
+                    ME CADASTRAR COMO JOGADOR
+                </pretty:link>
+
+                <pretty:link mappingId="esqueci-senha" styleClass="btn btn-link btn-block">
+                    ESQUECI A SENHA
+                </pretty:link>
+            </h:form>
+
+        </div>
+        <hr/>
+        <div class="row-fluid">
+            <div class="span12" style="text-align: center">
+                <a href="http://tecsinapse.com.br/" target="_blank"><img
+                        src="#{request.contextPath}/resources/assets/img/powered-by-ts-3.gif"/></a>
+            </div>
+        </div>
+
+    </ui:define>
+
+
+    <ui:define name="footer">
+        <!-- é vazio de proposito -->
+    </ui:define>
+
+</ui:composition>
+</html>

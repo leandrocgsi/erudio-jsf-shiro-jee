@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components">
+
+<ui:composition template="/resources/templates/template-clean.xhtml">
+
+    <ui:define name="alerta">
+        <h:form id="formNovaSenha">
+            <div class="page-header">
+                <h1>Nova Senha</h1>
+            </div>
+            <lj:messages/>
+            <ui:fragment rendered="#{novaSenhaController.usuario != null}">
+                <div class="well">
+                    <fieldset>
+                        <label>Nova Senha</label>
+                        <h:inputSecret value="#{novaSenhaController.usuario.senha}"
+                                       required="true" requiredMessage="Informe a nova senha"/>
+                        <span class="help-inline">Informa a nova senha</span> <label>Nova
+                        senha novamente</label>
+                        <h:inputSecret
+                                value="#{novaSenhaController.usuario.senhaConfirmacao}"
+                                required="true" requiredMessage="Informe novamente a nova senha"/>
+                        <span class="help-inline">Repita a nova senha</span>
+                    </fieldset>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <h:commandLink action="#{novaSenhaController.salvarNovaSenha}"
+                                       update="msgs" process="@form" styleClass="btn btn-inverse btn-large btn-primary">
+                            <i class="icon-refresh icon-white"></i> salvar
+                        </h:commandLink>
+                    </div>
+                </div>
+            </ui:fragment>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

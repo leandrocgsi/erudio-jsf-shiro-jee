@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components" xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<ui:composition template="/resources/templates/template-core.xhtml">
+    <ui:define name="cabecalho">
+        Jogadores
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form id="form">
+            <lj:messages/>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <pretty:link mappingId="jogador-novo" styleClass="btn btn-default">
+                        <i class="glyphicon glyphicon-plus"></i> novo
+                    </pretty:link>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p:dataTable value="#{jogadorController.jogadores}" var="jogador"
+                                 paginator="true" rows="20" paginatorPosition="bottom">
+                        <p:column headerText="Nome" filterMatchMode="contains" filterBy="#{jogador.nome}">
+                            #{jogador.nome}
+                        </p:column>
+                        <p:column headerText="Email" filterMatchMode="contains" filterBy="#{jogador.email}">
+                            #{jogador.email}
+                        </p:column>
+                        <p:column headerText="Ativo" filterMatchMode="contains" filterBy="#{jogador.ativoString}">
+                            #{jogador.ativoString}
+                        </p:column>
+                        <p:column headerText="Ações">
+                            <pretty:link mappingId="jogador" styleClass="btn btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i> Editar
+                                <f:param value="#{jogador.id}"/>
+                            </pretty:link>
+                            <pretty:link mappingId="jogador-ativar" styleClass="btn btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i> Ativar
+                                <f:param value="#{jogador.id}"/>
+                            </pretty:link>
+                            <pretty:link mappingId="jogador-bloquear" styleClass="btn btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i> Bloquear Jogador
+                                <f:param value="#{jogador.id}"/>
+                            </pretty:link>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

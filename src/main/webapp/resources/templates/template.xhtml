@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
+
+<f:view>
+    <h:head>
+        <f:facet name="first">
+            <meta charset="utf-8"></meta>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+            <title><ui:insert name="title">LIP Java</ui:insert></title>
+
+            <link rel="icon" type="image/vnd.microsoft.icon"
+                  href="#{request.contextPath}/resources/images/favicon.ico"/>
+            <link rel="SHORTCUT ICON" type="image/vnd.microsoft.icon"
+                  href="#{request.contextPath}/resources/images/favicon.ico"/>
+
+            <meta name="description" content=""></meta>
+            <meta name="keywords" content=""></meta>
+            <meta name="author" content="tecsinapse"></meta>
+
+            <meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>
+
+            <!-- Adiciona todos jqueries disponíveis para evitar conflitos será utilizado o último a ser declarado-->
+            <!-- não chamar jQuery.noConflict(); -->
+            <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+            <h:outputScript name="assets/js/jquery-1.11.1.min.js"/>
+        </f:facet>
+
+        <h:outputStylesheet name="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <ui:insert name="css">
+        </ui:insert>
+
+        <h:outputScript name="assets/bootstrap/js/bootstrap.min.js"/>
+
+        <ui:insert name="js"></ui:insert>
+    </h:head>
+
+    <h:body>
+        <ui:insert name="metadata">
+        </ui:insert>
+
+        <ui:insert name="corpo">
+        </ui:insert>
+    </h:body>
+</f:view>
+</html>

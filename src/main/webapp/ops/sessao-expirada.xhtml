@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces"
+        >
+<ui:composition template="/resources/templates/template-clean.xhtml">
+
+    <ui:define name="menu">
+    </ui:define>
+
+    <ui:define name="mega-menu">
+    </ui:define>
+
+    <ui:define name="alerta">
+        Você está tentando acessar uma página restrita e para isso é necessário fazer o login.<br/><br/>
+        Se você já tinha feito login mas ficou sem mexer em nosso sistema por alguns minutos achamos mais seguro que você faça o login novamente!<br/><br/>
+        Obrigado.<br/><br/>
+        <pretty:link mappingId="login" styleClass="btn btn-block btn-primary btn-large">
+            <i class="icon icon-home"></i> Clique aqui para realizar o login
+        </pretty:link>
+    </ui:define>
+</ui:composition>
+</html>

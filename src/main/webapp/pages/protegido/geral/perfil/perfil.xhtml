@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components">
+<ui:composition template="/resources/templates/template-core.xhtml">
+    <ui:define name="cabecalho">
+        Perfil
+    </ui:define>
+    <ui:define name="conteudo">
+        <h:form id="form" enctype="multipart/form-data">
+            <lj:messages/>
+
+            <div class="form-group">
+                <label>Senha</label>
+                <h:inputSecret value="#{perfilController.usuarioLogado.senha}" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Senha Novamente</label>
+                <h:inputSecret value="#{perfilController.usuarioLogado.senhaConfirmacao}" styleClass="form-control"/>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h:commandLink action="#{perfilController.salvarNovaSenha}" styleClass="btn btn-default">
+                        <i class="glyphicon glyphicon-floppy-disk"></i> salvar nova senha
+                    </h:commandLink>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+</html>

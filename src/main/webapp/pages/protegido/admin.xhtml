@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:lj="http://xmlns.jcp.org/jsf/composite/components"
+        >
+
+<ui:composition template="/resources/templates/template-core.xhtml">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{baseController.checkAdminTS}"/>
+    </f:metadata>
+
+    <ui:define name="conteudo">
+
+
+        <h:form id="form" enctype="multipart/form-data">
+            <div class="page-header">
+                <h1>Admin TecSinapse</h1>
+            </div>
+
+            <lj:messages/>
+
+            <div class="row">
+                <legend>Tools</legend>
+
+                <div class="controls">
+                    <h:commandLink action="#{adminController.resetarCache}" styleClass="btn btn-danger">
+                        <i class="icon-refresh icon-white"></i> Resetar Cache
+                    </h:commandLink>
+                    <h:commandLink action="#{adminController.gerarErro}" styleClass="btn btn-default">
+                        <i class="icon-refresh icon-white"></i> Gerar erro
+                    </h:commandLink>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

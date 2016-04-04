@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>lipjava</display-name>
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <path>/</path>
+        </cookie-config>
+    </session-config>
+
+    <!-- configurações de contexto -->
+    <context-param>
+        <param-name>com.sun.faces.numberOfViewsInSession</param-name>
+        <param-value>5</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>${jsf.projectStage}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+    <context-param>
+        <param-name>br.com.tecsinapse.faces.resource.Version</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+        <param-value>/WEB-INF/tecsinapse-lip.taglib.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/jsf/*</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.omnifaces.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Configuração de cache para os resources -->
+    <filter>
+        <filter-name>noCache</filter-name>
+        <filter-class>org.omnifaces.filter.CacheControlFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>cache1month</filter-name>
+        <filter-class>org.omnifaces.filter.CacheControlFilter</filter-class>
+        <init-param>
+            <param-name>expires</param-name>
+            <param-value>4w</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>noCache</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>cache1month</filter-name>
+        <url-pattern>*.img</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ShiroFilter</filter-name>
+        <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ShiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>jsf/pages/protegido/home.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <!-- tratamento de erros -->
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/sessao-expirada/</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>com.sun.faces.context.FacesFileNotFoundException</exception-type>
+        <location>/pagina-nao-existe/</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pagina-nao-existe/</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/jsf/ops/problema-ocorreu.xhtml</location>
+    </error-page>
+
+    <mime-mapping>
+        <extension>swf</extension>
+        <mime-type>application/x-shockwave-flash</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>map</extension>
+        <mime-type>application/x-navimap</mime-type>
+    </mime-mapping>
+</web-app>

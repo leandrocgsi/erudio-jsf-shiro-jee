@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:lj="http://java.sun.com/jsf/composite/components" xmlns:pretty="http://ocpsoft.com/prettyfaces">
+
+<ui:composition template="template.xhtml">
+    <ui:define name="css">
+        <h:outputStylesheet name="assets/css/dashboard.css" rel="stylesheet"/>
+    </ui:define>
+    <ui:define name="corpo">
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <pretty:link mappingId="home" styleClass="navbar-brand">LIP Java</pretty:link>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <pretty:link mappingId="perfil">Perfil</pretty:link>
+                        </li>
+                        <li>
+                            <h:outputLink value="#{request.contextPath}/sair/"><i
+                                    class="glyphicon glyphicon-log-out"></i> Sair</h:outputLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 sidebar-mobile">
+                    <lj:menu/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <lj:menu/>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">
+                        <ui:insert name="cabecalho"></ui:insert>
+                    </h1>
+
+                    <ui:insert name="conteudo">
+                    </ui:insert>
+                </div>
+            </div>
+        </div>
+
+        <ui:insert name="footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <footer class="al-right center-phone">
+                        <hr/>
+                        <a href="http://tecsinapse.com.br/" target="_blank"><img
+                                src="#{request.contextPath}/resources/assets/img/powered-by-ts-3.gif"
+                                alt="TecSinapse"/></a>
+                    </footer>
+                </div>
+            </div>
+        </ui:insert>
+
+    </ui:define>
+</ui:composition>
+
+</html>

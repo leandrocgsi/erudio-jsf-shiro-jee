@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibary_2_2.xsd"
+                version="2.2">
+    <namespace>http://tecsinapse.com.br/lip</namespace>
+
+    <tag>
+        <tag-name>collapsePanel</tag-name>
+        <component>
+            <component-type>br.com.tecsinapse.component.CollapsePanel</component-type>
+        </component>
+        <attribute>
+            <name>idContent</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>headerText</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>collapsed</name>
+            <required>false</required>
+            <type>boolean</type>
+        </attribute>
+    </tag>
+</facelet-taglib>

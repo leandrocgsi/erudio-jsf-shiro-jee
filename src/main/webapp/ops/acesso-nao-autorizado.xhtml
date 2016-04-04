@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces"
+        >
+<ui:composition template="/resources/templates/template-clean.xhtml">
+    <ui:define name="alerta">
+        Você está tentando acessar uma página restrita.<br/><br/>
+        Se você devia ter acesso a esta página consulte seu superior!<br/><br/>
+        Obrigado.<br/><br/>
+        <pretty:link mappingId="login" styleClass="btn btn-block btn-primary btn-large">
+            <i class="icon icon-home"></i> Clique aqui para realizar o login
+        </pretty:link>
+        <a class="btn btn-block btn-large" onclick="window.history.back();">
+            <i class="icon icon-arrow-left"></i> Voltar
+        </a>
+    </ui:define>
+</ui:composition>
+</html>

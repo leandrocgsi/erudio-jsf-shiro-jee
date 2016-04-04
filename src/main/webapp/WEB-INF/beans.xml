@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
+       bean-discovery-mode="all">
+
+    <interceptors>
+        <class>br.com.tecsinapse.interceptor.LoggingInterceptor</class>
+    </interceptors>
+</beans>

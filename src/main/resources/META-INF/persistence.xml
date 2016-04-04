@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="lipjavaPu" transaction-type="JTA">
+        <description>lip java pu</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:jboss/datasources/lipjavaDS</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.transaction.flush_before_completion" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+
+            <property name="hibernate.cache.region.factory_class"
+                      value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <property name="hibernate.jdbc.batch_size" value="50"/>
+            <property name="hibernate.max_fetch_depth" value="0"/>
+            <property name="hibernate.hbm2ddl.auto" value="${hibernate.auto}"/>
+            <property name="hibernate.show_sql" value="${hibernate.showSql}"/>
+            <property name="hibernate.format_sql" value="${hibernate.formatSql}"/>
+            <!-- TODO se der lazy ou tiver multiples bags tentar ativar essa prop -->
+            <property name="hibernate.enable_lazy_load_no_trans" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
