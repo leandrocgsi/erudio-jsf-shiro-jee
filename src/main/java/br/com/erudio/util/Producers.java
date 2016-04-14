@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 
 public class Producers implements Serializable {
 
-    @ApplicationScoped
+	private static final long serialVersionUID = 1L;
+
+	@ApplicationScoped
     @Produces
     public EnvProperties getEnvProps() {
         return ConfigFactory.create(EnvProperties.class);

@@ -85,9 +85,9 @@ public class JogadorController implements Serializable {
         validarSenhas();
         try {
         	jogador.setAtivo(false);
-        	jogador.setTokenNovaSenha(Token.generateCadastrarNovaSenha());
+        	jogador.setTokenNovaSenha(Token.generateNewPassword());
         	jogador.setDataExpiracaoTokenNovaSenha(LocalDateTime.now().plusDays(4).toDate());
-        	jogador.setSenha(Token.sha256(jogador.getSenha()));
+        	jogador.setSenha(Token.sha256(jogador.getPassword()));
         	jogadorService.save(jogador);
         	Messages.addGlobalInfo("Jogador cadastrado com sucesso! Você será notificado por email.");
 			return "/jogadores/";
@@ -98,7 +98,7 @@ public class JogadorController implements Serializable {
     }
 
 	private void validarSenhas() {
-		if (!jogador.getSenha().equals(jogador.getSenhaConfirmacao())) {
+		if (!jogador.getPassword().equals(jogador.getSenhaConfirmacao())) {
             Messages.addGlobalWarn("As senhas devem ser iguais!");
         }
 	}

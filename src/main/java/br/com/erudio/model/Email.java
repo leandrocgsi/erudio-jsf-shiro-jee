@@ -28,8 +28,8 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 
 import br.com.erudio.model.Model;
-import br.com.erudio.model.Usuario;
-import br.com.erudio.util.Constantes;
+import br.com.erudio.model.User;
+import br.com.erudio.util.Constants;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -113,12 +113,12 @@ public class Email implements Model<Long> {
     }
 
     public static String getDescricaoDestinatarios(
-            Collection<Usuario> destinatarios) {
+            Collection<User> destinatarios) {
         Collection<String> transform
                 = Collections2.transform(destinatarios,
-                new Function<Usuario, String>() {
+                new Function<User, String>() {
                     @Override
-                    public String apply(Usuario usuario) {
+                    public String apply(User usuario) {
                         return usuario.getEmail();
                     }
                 });
@@ -127,7 +127,7 @@ public class Email implements Model<Long> {
 
     public String[] getDestinatariosArray() {
         return Iterables
-                .toArray(Constantes.COMMA_SPLITTER.split(destinatarios), String.class);
+                .toArray(Constants.COMMA_SPLITTER.split(destinatarios), String.class);
     }
 
     @Override

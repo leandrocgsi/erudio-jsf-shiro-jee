@@ -25,8 +25,7 @@ public class AdminController implements Serializable {
 
 
     public void gerarErro() {
-        //pra teste do logback
-        throw new IllegalStateException("Estado inválido! Só pra testar o logback enviando email!");
+        throw new IllegalStateException("Invalid state! Just to test sending email logback!");
     }
 
     public void resetarCache() {
@@ -40,7 +39,7 @@ public class AdminController implements Serializable {
 
                 cache.removeAll();
             }
-            Messages.addGlobalInfo("operacao realizada com sucesso!");
+            Messages.addGlobalInfo("Operation executed with success!");
         } catch (CacheException | IllegalStateException e) {
             Messages.addGlobalError("Erro" + e.getMessage());
         }

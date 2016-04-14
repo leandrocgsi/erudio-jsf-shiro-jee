@@ -11,8 +11,8 @@ import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import com.ocpsoft.pretty.faces.annotation.URLMappings;
 
 import br.com.erudio.jsf.JsfUtil;
-import br.com.erudio.model.Usuario;
-import br.com.erudio.service.UsuarioService;
+import br.com.erudio.model.User;
+import br.com.erudio.service.UserService;
 import br.com.erudio.util.Token;
 
 import org.omnifaces.util.Messages;
@@ -31,11 +31,11 @@ public class NovaSenhaController implements Serializable {
     private transient Logger logger;
 
     @Inject
-    private UsuarioService usuarioService;
+    private UserService usuarioService;
 
     private String tokenNovaSenha;
 
-    private Usuario usuario;
+    private User usuario;
 
     private String emailCadastrado;
     private boolean enviado;
@@ -71,12 +71,12 @@ public class NovaSenhaController implements Serializable {
     }
 
     public void salvarNovaSenha() {
-        if (!usuario.getSenha().equals(usuario.getSenhaConfirmacao())) {
+        if (!usuario.getPassword().equals(usuario.getSenhaConfirmacao())) {
             Messages.addGlobalWarn("As senhas devem ser iguais!");
             return;
         }
 
-        usuario.setSenha(Token.sha256(usuario.getSenha()));
+        usuario.setSenha(Token.sha256(usuario.getPassword()));
         usuarioService.save(usuario);
         Messages.addGlobalInfo("Nova senha salva com sucesso!");
     }
@@ -89,11 +89,11 @@ public class NovaSenhaController implements Serializable {
         this.tokenNovaSenha = tokenNovaSenha;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

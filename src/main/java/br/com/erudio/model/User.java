@@ -43,7 +43,7 @@ import org.joda.time.LocalDateTime;
 @DiscriminatorColumn(name="discriminator", discriminatorType=DiscriminatorType.STRING)
 //@DiscriminatorFormula("case when Usuario is null then 0 else Usuario end") 
 @DiscriminatorValue(value="U")
-public class Usuario implements Model<Long>, Serializable {
+public class User implements Model<Long>, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -83,7 +83,7 @@ public class Usuario implements Model<Long>, Serializable {
     @Transient
     private String senhaConfirmacao;
 
-    public Usuario() {
+    public User() {
         dataHoraCriacao = LocalDateTime.now().toDate();
     }
 
@@ -101,10 +101,10 @@ public class Usuario implements Model<Long>, Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Usuario)) {
+        if (!(obj instanceof User)) {
             return false;
         }
-        Usuario other = (Usuario) obj;
+        User other = (User) obj;
         if (id != null) {
             if (!id.equals(other.id)) {
                 return false;
@@ -137,7 +137,7 @@ public class Usuario implements Model<Long>, Serializable {
         this.email = email;
     }
 
-    public String getSenha() {
+    public String getPassword() {
         return senha;
     }
 

@@ -7,11 +7,7 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 import java.io.IOException;
 
-/**
- * Tw Bootstrap 3
- */
-@FacesRenderer(componentFamily = "br.com.erudio.component",
-        rendererType = "br.com.erudio.component.CollapsePanelRenderer")
+@FacesRenderer(componentFamily = "br.com.erudio.component", rendererType = "br.com.erudio.component.CollapsePanelRenderer")
 public class CollapsePanelRenderer extends Renderer {
 
     private String escapeToJquery(String value) {
@@ -19,15 +15,14 @@ public class CollapsePanelRenderer extends Renderer {
     }
 
     @Override
-    public void encodeBegin(FacesContext context, UIComponent component) throws
-            IOException {
+    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+    	
         super.encodeBegin(context, component);
+        
         final CollapsePanel collapsePanel = (CollapsePanel) component;
 
         final String accordionId = component.getClientId();
-        final String collapseId = collapsePanel.getIdContent() != null
-                ? collapsePanel.getIdContent()
-                : accordionId.replaceAll(":", "_") + "_collapse";
+        final String collapseId = collapsePanel.getIdContent() != null ? collapsePanel.getIdContent() : accordionId.replaceAll(":", "_") + "_collapse";
 
         final ResponseWriter writer = context.getResponseWriter();
 
@@ -59,39 +54,29 @@ public class CollapsePanelRenderer extends Renderer {
         writer.writeAttribute("class", "panel-body", null);
     }
 
-    private void encodeA(
-            final FacesContext context, final ResponseWriter writer,
-            final CollapsePanel collapsePanel,
-            String accordionId, String collapseId) throws IOException {
+    private void encodeA(final FacesContext context, final ResponseWriter writer, final CollapsePanel collapsePanel, String accordionId, String collapseId) throws IOException {
+    	
         writer.startElement("a", null);
         writer.writeAttribute("data-toggle", "collapse", null);
-        writer.writeAttribute("data-parent", "#" + escapeToJquery(accordionId),
-                null);
+        writer.writeAttribute("data-parent", "#" + escapeToJquery(accordionId), null);
         writer.writeAttribute("href", "#" + collapseId, null);
 
         final UIComponent headerFacet = collapsePanel.getFacet("header");
-        //preferência para facet se existir não renderiza headerText
-        if (headerFacet != null) {
-            headerFacet.encodeAll(context);
-        } else if (collapsePanel.getHeaderText() != null) {
-            writer.writeText(collapsePanel.getHeaderText(), null);
-        }
+        if (headerFacet != null) headerFacet.encodeAll(context);
+        else if (collapsePanel.getHeaderText() != null) writer.writeText(collapsePanel.getHeaderText(), null);
 
         writer.endElement("a");
     }
 
     @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws
-            IOException {
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+    	
         super.encodeEnd(context, component);
         final ResponseWriter writer = context.getResponseWriter();
 
         writer.endElement("div");
-
         writer.endElement("div");
-
         writer.endElement("div");
-
         writer.endElement("div");
 
     }

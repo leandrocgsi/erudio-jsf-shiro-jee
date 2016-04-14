@@ -10,7 +10,6 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 
-
 public class AjaxFormAuthenticationFilter extends FormAuthenticationFilter {
 
     private static final String FACES_REDIRECT_XML
@@ -23,8 +22,7 @@ public class AjaxFormAuthenticationFilter extends FormAuthenticationFilter {
         final HttpServletRequest request = (HttpServletRequest) req;
 
         if ("partial/ajax".equals(request.getHeader("Faces-Request"))) {
-            res.getWriter().printf(FACES_REDIRECT_XML,
-                    request.getContextPath() + getLoginUrl());
+            res.getWriter().printf(FACES_REDIRECT_XML, request.getContextPath() + getLoginUrl());
         } else {
             super.redirectToLogin(req, res);
         }

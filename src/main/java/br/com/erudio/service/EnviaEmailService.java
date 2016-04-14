@@ -10,7 +10,7 @@ import com.google.common.collect.Iterables;
 
 import br.com.erudio.model.AnexoEmail;
 import br.com.erudio.model.Email;
-import br.com.erudio.util.Constantes;
+import br.com.erudio.util.Constants;
 import br.com.erudio.util.EnvProperties;
 
 import org.joda.time.LocalDateTime;
@@ -109,7 +109,7 @@ public class EnviaEmailService implements Serializable {
     }
 
     private String getAssunto(Email email) {
-        String assunto = "[LIP Java] ";
+        String assunto = "[ERUDIO Java] ";
         if (!isProd()) {
             assunto += "-> " + envProps.env().toUpperCase();
             assunto += " <- ";
@@ -130,12 +130,12 @@ public class EnviaEmailService implements Serializable {
         } else {
             Collection<String> destinatarios = Collections2.filter(Arrays.asList(email.getDestinatariosArray()), new Predicate<String>() {
                 public boolean apply(String e) {
-                    return e.endsWith(Constantes.DEFAULT_EMAIL_PREFIX) || envProps.emailsSempreRecebem().contains(e);
+                    return e.endsWith(Constants.DEFAULT_EMAIL_PREFIX) || envProps.emailsSempreRecebem().contains(e);
                 }
             });
 
             to = destinatarios.isEmpty()
-                    ? Iterables.toArray(Constantes.COMMA_SPLITTER.split(envProps.emailsPadroes()), String.class)
+                    ? Iterables.toArray(Constants.COMMA_SPLITTER.split(envProps.emailsPadroes()), String.class)
                     : destinatarios.toArray(new String[0]);
         }
 

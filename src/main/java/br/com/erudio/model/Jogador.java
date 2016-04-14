@@ -21,7 +21,7 @@ import br.com.erudio.model.enums.TipoJogador;
 @Entity
 @Table(name = "usuario")
 @DiscriminatorValue("J")
-public class Jogador extends Usuario {
+public class Jogador extends User {
     
     private static final long serialVersionUID =  1L;   
     

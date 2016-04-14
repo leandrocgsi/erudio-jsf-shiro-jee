@@ -10,8 +10,8 @@ import com.ocpsoft.pretty.faces.annotation.URLAction;
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import com.ocpsoft.pretty.faces.annotation.URLMappings;
 
-import br.com.erudio.model.Usuario;
-import br.com.erudio.service.UsuarioService;
+import br.com.erudio.model.User;
+import br.com.erudio.service.UserService;
 
 import org.omnifaces.util.Messages;
 
@@ -26,11 +26,11 @@ public class UsuarioController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private UsuarioService usuarioService;
+    private UserService usuarioService;
 
-    private List<Usuario> usuarios;
+    private List<User> usuarios;
     private Long usuarioId;
-    private Usuario usuario;
+    private User usuario;
 
     @URLAction(mappingId = "usuarios", onPostback = false)
     public void idUsuarios() {
@@ -44,7 +44,7 @@ public class UsuarioController implements Serializable {
 
     @URLAction(mappingId = "usuario-novo", onPostback = false)
     public void idUsuarioNovo() {
-        usuario = new Usuario();
+        usuario = new User();
     }
 
     public void salvar() {
@@ -57,11 +57,11 @@ public class UsuarioController implements Serializable {
         Messages.addGlobalInfo("Senha resetada com sucesso e o email com a nova senha será enviada!");
     }
 
-    public List<Usuario> getUsuarios() {
+    public List<User> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
+    public void setUsuarios(List<User> usuarios) {
         this.usuarios = usuarios;
     }
 
@@ -73,11 +73,11 @@ public class UsuarioController implements Serializable {
         this.usuarioId = usuarioId;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 }

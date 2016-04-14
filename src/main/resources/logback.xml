@@ -42,7 +42,7 @@
                 <to>lip@erudio.com.br</to>
                 <from>erro@lipjava.com.br</from>
 
-                <subject>[LIPJAVA-ERRO] - ${env} ${branch} %-5level - %logger{20}</subject>
+                <subject>[ERUDIOJAVA-ERRO] - ${env} ${branch} %-5level - %logger{20}</subject>
 
                 <sessionViaJNDI>true</sessionViaJNDI>
                 <jndiLocation>java:jboss/mail/MandrillLipjava</jndiLocation>

@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 
 import br.com.erudio.model.AnexoEmail;
 import br.com.erudio.model.Email;
-import br.com.erudio.model.Usuario;
+import br.com.erudio.model.User;
 import br.com.erudio.util.EnvProperties;
 
 import org.apache.velocity.VelocityContext;
@@ -64,7 +64,7 @@ public class EmailService extends GenericService<Email, Long> {
         super.save(email);
     }
 
-    public void gerarEmail(String assunto, String conteudo, Collection<Usuario> destinatarios) {
+    public void gerarEmail(String assunto, String conteudo, Collection<User> destinatarios) {
         gerarEmail(assunto, conteudo, Email.getDescricaoDestinatarios(destinatarios));
     }
 
@@ -86,7 +86,7 @@ public class EmailService extends GenericService<Email, Long> {
         parameters.put("url", envProps.host());
         parameters.put("titulo", email.getAssunto());
         parameters.put("logo", envProps.host());
-        parameters.put("footer", "LIP Java");
+        parameters.put("footer", "ERUDIO Java");
 
         return parameters;
     }

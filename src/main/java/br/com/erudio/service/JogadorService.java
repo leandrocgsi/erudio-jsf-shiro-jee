@@ -71,7 +71,7 @@ public class JogadorService extends GenericService<Jogador, Long> {
 	private StringBuilder geraTextoEmail(Jogador jogador) {
 		StringBuilder texto = new StringBuilder();
         texto.append("Olá ").append(jogador.getNome()).append(", seja bem-vindo!<br/><br/>");
-        texto.append("Você agora pode gerenciar seus jogos no LIP Java.<br/><br/>");
+        texto.append("Você agora pode gerenciar seus jogos no ERUDIO Java.<br/><br/>");
         texto.append("Clique ");
         texto.append("<a href=\"").append(envProps.host()).append("\">aqui</a>");
         texto.append(" para acessar o sistema.<br/><br/>");

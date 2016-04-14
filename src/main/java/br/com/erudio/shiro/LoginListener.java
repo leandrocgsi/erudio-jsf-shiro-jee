@@ -15,7 +15,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import br.com.erudio.model.Usuario;
+import br.com.erudio.model.User;
 
 @WebListener
 public class LoginListener implements AuthenticationListener, HttpSessionListener {
@@ -25,9 +25,9 @@ public class LoginListener implements AuthenticationListener, HttpSessionListene
 
     @Override
     public void onSuccess(AuthenticationToken token, AuthenticationInfo info) {
-        Usuario usuario = info.getPrincipals().oneByType(Usuario.class);
-        if (info.getPrincipals().getRealmNames().contains(UsuarioRealm.REALM_NAME)) {
-            singleLogin(usuario.getEmail());
+        User user = info.getPrincipals().oneByType(User.class);
+        if (info.getPrincipals().getRealmNames().contains(UserRealm.REALM_NAME)) {
+            singleLogin(user.getEmail());
         }
     }
 

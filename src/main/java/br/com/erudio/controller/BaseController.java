@@ -18,9 +18,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 
-import br.com.erudio.cdi.annotation.UsuarioLogado;
-import br.com.erudio.model.Usuario;
-import br.com.erudio.util.Constantes;
+import br.com.erudio.cdi.annotation.LoggedUser;
+import br.com.erudio.model.User;
+import br.com.erudio.util.Constants;
 
 @Named
 @SessionScoped
@@ -30,15 +30,15 @@ public class BaseController implements Serializable {
     @Inject
     private transient Logger logger;
 
-    private Usuario usuarioLogado;
+    private User usuarioLogado;
 
     /**
      * protected usar com @Inject
      */
     @Named("usuarioLogado")
     @Produces
-    @UsuarioLogado
-    protected Usuario getUsuarioLogado() {
+    @LoggedUser
+    protected User getUsuarioLogado() {
         final Subject subject = SecurityUtils.getSubject();
 
         if (!subject.isAuthenticated()) {
@@ -46,7 +46,7 @@ public class BaseController implements Serializable {
         }
 
         if (usuarioLogado == null) {
-            usuarioLogado = subject.getPrincipals().oneByType(Usuario.class);
+            usuarioLogado = subject.getPrincipals().oneByType(User.class);
         }
         return usuarioLogado;
     }
@@ -83,7 +83,7 @@ public class BaseController implements Serializable {
     }
 
     public boolean isAdminTS() {
-        return getUsuarioLogado().getEmail().equalsIgnoreCase(Constantes.LIP_MAIL);
+        return getUsuarioLogado().getEmail().equalsIgnoreCase(Constants.ERUDIO_MAIL);
     }
 
     public void checkAdminTS() {

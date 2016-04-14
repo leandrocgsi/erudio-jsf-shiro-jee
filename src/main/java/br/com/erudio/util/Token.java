@@ -9,6 +9,7 @@ import java.security.SecureRandom;
 import static java.util.Objects.requireNonNull;
 
 public class Token {
+	
     private static final SecureRandom random = new SecureRandom();
 
     public static String generateToken() {
@@ -28,12 +29,11 @@ public class Token {
         return new Sha256Hash(plainText).toHex();
     }
 
-    public static String generateCadastrarNovaSenha() {
-        return generateToken().substring(0, 12)
-                + new LocalDateTime().toString("hhddyyyyMMss");
+    public static String generateNewPassword() {
+        return generateToken().substring(0, 12) + new LocalDateTime().toString("hhddyyyyMMss");
     }
 
-    public static String generateCodigoTv() {
+    public static String generateTvCode() {
         return generateToken().substring(0, 6);
     }
 }

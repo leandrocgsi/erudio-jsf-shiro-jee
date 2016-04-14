@@ -9,9 +9,9 @@ import com.ocpsoft.pretty.faces.annotation.URLAction;
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import com.ocpsoft.pretty.faces.annotation.URLMappings;
 
-import br.com.erudio.cdi.annotation.UsuarioLogado;
-import br.com.erudio.model.Usuario;
-import br.com.erudio.service.UsuarioService;
+import br.com.erudio.cdi.annotation.LoggedUser;
+import br.com.erudio.model.User;
+import br.com.erudio.service.UserService;
 import br.com.erudio.util.Token;
 
 import org.omnifaces.util.Messages;
@@ -25,11 +25,11 @@ public class PerfilController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private UsuarioService usuarioService;
+    private UserService usuarioService;
 
     @Inject
-    @UsuarioLogado
-    private Usuario usuarioLogado;
+    @LoggedUser
+    private User usuarioLogado;
 
     @URLAction(mappingId = "perfil", onPostback = false)
     public void idPerfil() {
@@ -37,22 +37,22 @@ public class PerfilController implements Serializable {
     }
 
     public void salvarNovaSenha() {
-        if (!usuarioLogado.getSenha().equals(usuarioLogado.getSenhaConfirmacao())) {
+        if (!usuarioLogado.getPassword().equals(usuarioLogado.getSenhaConfirmacao())) {
             Messages.addGlobalWarn("As senhas precisam ser iguais!");
             return;
         }
-        usuarioLogado.setSenha(Token.sha256(usuarioLogado.getSenha()));
+        usuarioLogado.setSenha(Token.sha256(usuarioLogado.getPassword()));
         usuarioService.salvar(usuarioLogado);
         usuarioLogado.setSenha(null);
         usuarioLogado.setSenhaConfirmacao(null);
         Messages.addGlobalInfo("Senha atualizada!");
     }
 
-    public Usuario getUsuarioLogado() {
+    public User getUsuarioLogado() {
         return usuarioLogado;
     }
 
-    public void setUsuarioLogado(Usuario usuarioLogado) {
+    public void setUsuarioLogado(User usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
     }
 }

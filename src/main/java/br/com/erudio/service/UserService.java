@@ -5,7 +5,7 @@ import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
 import br.com.erudio.interceptor.Logging;
-import br.com.erudio.model.Usuario;
+import br.com.erudio.model.User;
 import br.com.erudio.util.EnvProperties;
 import br.com.erudio.util.Token;
 
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Stateless
 @Logging
-public class UsuarioService extends GenericService<Usuario, Long> {
+public class UserService extends GenericService<User, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,10 +28,10 @@ public class UsuarioService extends GenericService<Usuario, Long> {
     @Inject
     private EnvProperties envProps;
 
-    public Usuario buscaParaLogin(String email) {
-        final TypedQuery<Usuario> findByEmailQuery = getEntityManager().createNamedQuery("Usuario.findByEmailAndAtivo", Usuario.class);
+    public User findToLogin(String email) {
+        final TypedQuery<User> findByEmailQuery = getEntityManager().createNamedQuery("Usuario.findByEmailAndAtivo", User.class);
         findByEmailQuery.setParameter("email", email);
-        List<Usuario> usuarios = findByEmailQuery.getResultList();
+        List<User> usuarios = findByEmailQuery.getResultList();
         if (usuarios.isEmpty()) {
             return null;
         }
@@ -40,7 +40,7 @@ public class UsuarioService extends GenericService<Usuario, Long> {
 
 
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    public Usuario findByTokenNovaSenhaAndNaoExpirado(String tokenNovaSenha) {
+    public User findByTokenNovaSenhaAndNaoExpirado(String tokenNovaSenha) {
         Criteria criteria = getCriteria();
         criteria.add(Restrictions.eq("tokenNovaSenha", tokenNovaSenha));
         criteria.add(Restrictions.ge("dataExpiracaoTokenNovaSenha",
@@ -53,11 +53,11 @@ public class UsuarioService extends GenericService<Usuario, Long> {
 
 
     public boolean gerarTokenNovaSenhaAndEnviaEmail(String email) {
-        Usuario usuario = buscaParaLogin(email);
+        User usuario = findToLogin(email);
         if (usuario == null) {
             return false;
         }
-        usuario.setTokenNovaSenha(Token.generateCadastrarNovaSenha());
+        usuario.setTokenNovaSenha(Token.generateNewPassword());
         usuario.setDataExpiracaoTokenNovaSenha(LocalDateTime.now().plusDays(4).toDate());
         usuario = save(usuario);
         enviaEmailEsqueciSenha(usuario);
@@ -65,28 +65,28 @@ public class UsuarioService extends GenericService<Usuario, Long> {
 
     }
 
-    private void enviaEmailEsqueciSenha(Usuario usuario) {
+    private void enviaEmailEsqueciSenha(User usuario) {
         StringBuilder texto = new StringBuilder();
         texto.append(
                 "Você nos avisou que esqueceu sua senha então precisa cadastrar uma nova, clique <a href=\"");
         texto.append(envProps.host() + "senha/nova/");
         texto.append(usuario.getTokenNovaSenha());
         texto.append(
-                "/\">aqui</a> e informe sua nova senha no LIP Java!<br/><br/>Você poderá cadastrar uma nova senha até ");
+                "/\">aqui</a> e informe sua nova senha no ERUDIO Java!<br/><br/>Você poderá cadastrar uma nova senha até ");
         texto.append(new LocalDateTime(usuario.getDataExpiracaoTokenNovaSenha())
                 .toString("dd/MM/yyyy HH:mm"));
         emailService.gerarEmail("Esqueci a senha", texto.toString(),
                 usuario.getEmail());
     }
 
-    public Usuario salvar(Usuario usuario) {
+    public User salvar(User usuario) {
         if (usuario.getId() == null) {
             resetSenhaAndEnviaEmailUsuario(usuario);
         }
         return save(usuario);
     }
 
-    public Usuario resetSenhaAndEnviaEmailUsuario(Usuario usuario) {
+    public User resetSenhaAndEnviaEmailUsuario(User usuario) {
         final String senha = Token.generatePassword();
         usuario.setSenha(Token.sha256(senha));
 
@@ -96,7 +96,7 @@ public class UsuarioService extends GenericService<Usuario, Long> {
 
         texto.append("Olá ").append(usuario.getNome()).append(", seja bem-vindo!<br/><br/>");
 
-        texto.append("Seu cadastro foi ativado no LIP Java.<br/><br/>");
+        texto.append("Seu cadastro foi ativado no ERUDIO Java.<br/><br/>");
 
         texto.append("Clique ");
         texto.append("<a href=\"").append(envProps.host()).append("\">aqui</a>");

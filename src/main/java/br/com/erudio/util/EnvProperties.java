@@ -6,6 +6,7 @@ import org.aeonbits.owner.ConfigFactory;
 
 @Sources({"classpath:env.properties"})
 public interface EnvProperties extends Config {
+	
     EnvProperties INSTANCE = ConfigFactory.create(EnvProperties.class);
 
     @Key("env")
@@ -14,15 +15,9 @@ public interface EnvProperties extends Config {
     @Key("host")
     String host();
 
-    /**
-     * @return Emails padrões separados por virgula
-     */
     @Key("emailsPadroes")
     String emailsPadroes();
 
-    /**
-     * @return Emails que sempre recebem separados por virgula
-     */
     @Key("emailsSempreRecebem")
     String emailsSempreRecebem();
 

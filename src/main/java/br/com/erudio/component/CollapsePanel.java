@@ -5,6 +5,7 @@ import javax.faces.component.html.HtmlPanelGroup;
 
 @FacesComponent("br.com.erudio.component.CollapsePanel")
 public class CollapsePanel extends HtmlPanelGroup {
+	
     public CollapsePanel() {
         setRendererType("br.com.erudio.component.CollapsePanelRenderer");
     }

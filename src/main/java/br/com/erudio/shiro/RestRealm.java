@@ -9,10 +9,10 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 
-import br.com.erudio.model.Usuario;
-import br.com.erudio.util.Constantes;
+import br.com.erudio.model.User;
+import br.com.erudio.util.Constants;
 
-public class RestRealm extends UsuarioRealm {
+public class RestRealm extends UserRealm {
     private static final String REALM_NAME = "restRealm";
 
     public RestRealm() {
@@ -23,12 +23,10 @@ public class RestRealm extends UsuarioRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
-        Usuario usuario = getUsuarioService().buscaParaLogin(Constantes.LIP_MAIL);
-        if (Constantes.REST_USER.equals(token.getUsername())) {
-            final SimplePrincipalCollection pc = new SimplePrincipalCollection(
-                    Arrays.asList(Constantes.REST_USER, usuario.getId(), usuario), getName());
-
-            return new SimpleAuthenticationInfo(pc, Constantes.SENHA_BASIC);
+        User usuario = getUserService().findToLogin(Constants.ERUDIO_MAIL);
+        if (Constants.REST_USER.equals(token.getUsername())) {
+            final SimplePrincipalCollection pc = new SimplePrincipalCollection(Arrays.asList(Constants.REST_USER, usuario.getId(), usuario), getName());
+            return new SimpleAuthenticationInfo(pc, Constants.BASIC_PASSWORD);
         } else {
             return null;
         }
